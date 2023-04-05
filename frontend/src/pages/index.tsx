@@ -8,18 +8,18 @@ export default function Example() {
       <Head>
         <title>Sign In</title>
       </Head>
-      <div className="flex min-h-full">
-        <div className="flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
-          <div className="mx-auto w-full max-w-sm lg:w-96">
+      <div className="flex min-h-full flex-row">
+        <div className="flex w-2/3 items-center justify-center bg-[#242E42] px-4 py-12 text-white sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+          <div className="mx-auto w-full">
             <div className="mt-8">
               <div className="mt-6">
                 <form action="#" method="POST" className="space-y-6">
                   <div>
                     <label
                       htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-white"
                     >
-                      Email address
+                      Username
                     </label>
                     <div className="mt-2">
                       <input
@@ -36,7 +36,7 @@ export default function Example() {
                   <div className="space-y-1">
                     <label
                       htmlFor="password"
-                      className="block text-sm font-medium leading-6 text-gray-900"
+                      className="block text-sm font-medium leading-6 text-white"
                     >
                       Password
                     </label>
@@ -55,9 +55,9 @@ export default function Example() {
                   <div>
                     <button
                       type="submit"
-                      className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                      className="flex justify-center rounded-md border border-[#37ABBC] px-8 py-2 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-[#37ABBC]"
                     >
-                      Sign in
+                      Submit
                     </button>
                   </div>
                 </form>
@@ -65,11 +65,11 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="relative hidden w-0 flex-1 lg:block">
+        <div className="w-1/3">
           <Image
-            className="absolute inset-0 h-full w-full object-cover"
             src="/login-bg.png"
-            alt=""
+            alt="asldkj"
+            className="object-fit h-full w-full"
             width={500}
             height={500}
           />
