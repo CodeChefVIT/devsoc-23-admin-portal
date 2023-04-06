@@ -65,11 +65,11 @@ export default function Example() {
             </div>
           </div>
         </div>
-        <div className="w-1/3">
+        <div className="flex-1">
           <Image
             src="/login-bg.png"
             alt="asldkj"
-            className="object-fit h-full w-full"
+            className="h-full w-full object-contain"
             width={500}
             height={500}
           />
