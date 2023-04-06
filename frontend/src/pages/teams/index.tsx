@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useLayoutEffect, useRef, useState } from "react";
 import Navbar from "~/components/Navbar/Navbar";
 
@@ -37,6 +38,9 @@ export default function Example() {
 
   return (
     <>
+      <Head>
+        <title>Dashboard</title>
+      </Head>
       <Navbar />
       <div className="mt-8 px-4 sm:px-6 lg:px-8">
         <div className="sm:flex sm:items-center">
