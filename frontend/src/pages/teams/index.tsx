@@ -1,26 +1,47 @@
 import Head from "next/head";
-import { useLayoutEffect, useRef, useState } from "react";
-import Navbar from "~/components/Navbar/Navbar";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 
-const people = [
-  {
-    name: "Lindsay Walton",
-    title: "Front-end Developer",
-    email: "lindsay.walton@example.com",
-    role: "Member",
-  },
-  // More people...
-];
+import { type Team } from "~/types/common";
+import Navbar from "~/components/Navbar/Navbar";
+import useAuth from "~/hooks/auth";
+import { useRouter } from "next/router";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
+const people: Team[] = [
+  {
+    Id: "642ad26ef26f5b1114b109d7",
+    teamName: "test1234",
+    TeamLeaderId: "642ad1fb816231f80bf4c705",
+    teamMembers: ["642ad1fb816231f80bf4c705"],
+    teamSize: 1,
+    ProjectId: "642ad29ef26f5b1114b109d9",
+    projectExists: true,
+    round: 3,
+    inviteCode: "THjyWd",
+    createdTime: "2023-04-03T13:19:42.288Z",
+    updatedTime: "2023-04-03T13:19:42.288Z",
+  },
+];
+
 export default function Example() {
+  const queryClient = useQueryClient();
+  const { isAuthenticated } = useAuth();
+  const router = useRouter();
+
   const checkbox = useRef();
   const [checked, setChecked] = useState(false);
   const [indeterminate, setIndeterminate] = useState(false);
-  const [selectedPeople, setSelectedPeople] = useState([]);
+  const [selectedPeople, setSelectedPeople] = useState<Team[]>([]);
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      void router.push("/");
+    }
+  }, [isAuthenticated, router]);
 
   useLayoutEffect(() => {
     const isIndeterminate =

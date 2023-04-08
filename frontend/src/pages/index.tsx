@@ -1,8 +1,21 @@
 import Image from "next/image";
-import Link from "next/link";
 import Head from "next/head";
+import { z } from "zod";
+import Form, { PasswordSchema } from "~/components/Form/Form";
 
-export default function Example() {
+const LoginSchema = z.object({
+  email: z
+    .string()
+    .email("Enter a real email please.")
+    .describe("Email // Please enter your email"),
+  password: PasswordSchema.describe("Password // Please enter your password"),
+});
+
+export default function Index() {
+  function onSubmit(data: z.infer<typeof LoginSchema>) {
+    console.log(data);
+  }
+
   return (
     <>
       <Head>
@@ -13,54 +26,9 @@ export default function Example() {
           <div className="mx-auto w-full">
             <div className="mt-8">
               <div className="mt-6">
-                <form action="#" method="POST" className="space-y-6">
-                  <div>
-                    <label
-                      htmlFor="email"
-                      className="block text-sm font-medium leading-6 text-white"
-                    >
-                      Username
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        autoComplete="email"
-                        required
-                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div className="space-y-1">
-                    <label
-                      htmlFor="password"
-                      className="block text-sm font-medium leading-6 text-white"
-                    >
-                      Password
-                    </label>
-                    <div className="mt-2">
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        autoComplete="current-password"
-                        required
-                        className="block w-full rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <button
-                      type="submit"
-                      className="flex justify-center rounded-md border border-[#37ABBC] px-8 py-2 text-sm font-semibold text-white shadow-sm transition duration-200 hover:bg-[#37ABBC]"
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </form>
+                <div className="space-y-6">
+                  <Form schema={LoginSchema} onSubmit={onSubmit} />
+                </div>
               </div>
             </div>
           </div>
@@ -72,6 +40,7 @@ export default function Example() {
             className="h-full w-full object-contain"
             width={500}
             height={500}
+            priority
           />
         </div>
       </div>
