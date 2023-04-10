@@ -62,10 +62,10 @@ export default function Teams() {
           <Navbar />
           <div className="p-5"></div>
           <div className="px-4 sm:px-6 lg:px-8">
-            <div className="mt-8 flow-root rounded-md bg-white ring-1 ring-gray-300">
+            <div className="mt-8 flow-root">
               <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                  <div className="relative">
+                  <div className="overflow-hidden bg-white shadow ring-1 ring-black/5 sm:rounded-lg">
                     <table className="min-w-full table-fixed divide-y divide-gray-300">
                       <thead>
                         <tr>
@@ -83,25 +83,25 @@ export default function Teams() {
                           </th>
                           <th
                             scope="col"
-                            className="py-3.5 text-left text-sm font-semibold "
+                            className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
                           >
                             Name
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold "
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
                             Title
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold "
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
                             Email
                           </th>
                           <th
                             scope="col"
-                            className="px-3 py-3.5 text-left text-sm font-semibold "
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
                             Role
                           </th>
@@ -110,7 +110,7 @@ export default function Teams() {
                       <tbody className="divide-y divide-gray-200 bg-white">
                         {teams.map((team) => (
                           <tr
-                            key={team.Id}
+                            key={team.email}
                             className={
                               selectedPeople.includes(team)
                                 ? "bg-gray-50"
@@ -124,7 +124,7 @@ export default function Teams() {
                               <input
                                 type="checkbox"
                                 className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                value={team.Id}
+                                value={team.email}
                                 checked={selectedPeople.includes(team)}
                                 onChange={(e) =>
                                   setSelectedPeople(
@@ -140,22 +140,18 @@ export default function Teams() {
                                 "whitespace-nowrap py-4 pr-3 text-sm font-medium",
                                 selectedPeople.includes(team)
                                   ? "text-indigo-600"
-                                  : ""
+                                  : "text-gray-900"
                               )}
                             >
-                              {team.teamName}
+                              {team.name}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm ">
-                              {team.teamMembers.map((member, idx) => (
-                                <div key={member.Id}>Member {idx + 1}</div>
-                              ))}
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              {team.title}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm ">
-                              {team.teamMembers.map((member, idx) => (
-                                <div key={member.Id}>Phone No. {idx + 1}</div>
-                              ))}
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                              {team.email}
                             </td>
-                            <td className="whitespace-nowrap px-3 py-4 text-sm ">
+                            <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                               {team.role}
                             </td>
                           </tr>
