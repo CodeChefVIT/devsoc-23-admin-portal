@@ -1,14 +1,8 @@
 import axios from "~/api";
 import { type User } from "~/types/common";
 
-export const login = async (
-  username: string,
-  password: string
-): Promise<User> => {
-  const response = await axios.post<User>("/user/login", {
-    username,
-    password,
-  });
+export const login = async (data: { email: string; password: string }) => {
+  const response = await axios.post<User>("/users/login", data);
 
   return response.data;
 };

@@ -1,9 +1,14 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function useAuth() {
-  const [token, setToken] = useState<string | null>(
-    localStorage.getItem("token")
-  );
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const currentToken = localStorage.getItem("token");
+    if (currentToken) {
+      setToken(currentToken);
+    }
+  }, []);
 
   const signIn = (token: string) => {
     localStorage.setItem("token", token);
@@ -15,5 +20,5 @@ export default function useAuth() {
     setToken(null);
   };
 
-  return { token, signIn, signOut, isAuthenticated: !!token };
+  return { token, signIn, signOut, isAuthenticated: token ? true : false };
 }

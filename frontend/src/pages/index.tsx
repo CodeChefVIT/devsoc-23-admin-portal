@@ -1,7 +1,14 @@
 import Image from "next/image";
 import Head from "next/head";
 import { z } from "zod";
+import { useMutation } from "@tanstack/react-query";
+
 import Form, { PasswordSchema } from "~/components/Form/Form";
+import { login } from "~/api/user";
+import { type AxiosError } from "axios";
+import { type Error, type User } from "~/types/common";
+import useAuth from "~/hooks/auth";
+import { useRouter } from "next/router";
 
 const LoginSchema = z.object({
   email: z
@@ -12,8 +19,25 @@ const LoginSchema = z.object({
 });
 
 export default function Index() {
+  const { signIn } = useAuth();
+  const router = useRouter();
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: (data: User) => {
+      signIn(data.token);
+      void router.push("/teams");
+    },
+    onError: (error: AxiosError) => {
+      if (error.response) {
+        const data: Error = error.response.data as Error;
+        console.log(data.err);
+      }
+    },
+  });
+
   function onSubmit(data: z.infer<typeof LoginSchema>) {
-    console.log(data);
+    mutation.mutate(data);
   }
 
   return (

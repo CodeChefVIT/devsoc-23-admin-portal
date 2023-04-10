@@ -34,3 +34,8 @@ export interface Team {
   createdTime: string;
   updatedTime: string;
 }
+
+export interface Error {
+  err: string;
+  status: boolean;
+}

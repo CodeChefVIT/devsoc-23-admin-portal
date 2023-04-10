@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const token = localStorage.getItem("token");
+let token;
+
+if (typeof window !== "undefined") {
+  token = localStorage.getItem("token");
+}
 
 if (token) {
   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
