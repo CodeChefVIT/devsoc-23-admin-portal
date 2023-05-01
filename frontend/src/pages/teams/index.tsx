@@ -83,27 +83,45 @@ export default function Teams() {
                           </th>
                           <th
                             scope="col"
-                            className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                            className="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
                           >
-                            Name
+                            Team Name
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Title
+                            Members
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Email
+                            Phone
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Role
+                            Track Enrolled
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Status
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Modify
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            View Project
                           </th>
                         </tr>
                       </thead>
