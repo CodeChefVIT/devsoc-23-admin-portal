@@ -2,6 +2,7 @@
 import Navbar from "~/components/Navbar/Navbar";
 import { type Team } from "~/types/common";
 import { BellIcon } from "@heroicons/react/24/solid";
+import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import Dropdown from "~/components/Dropdown/Dropdown";
 import Breadcrumbs from "~/components/Breadcrumbs/Breadcrumbs";
 
@@ -20,8 +21,8 @@ export default function Project() {
     updatedTime: "2023-04-03T13:19:42.288Z",
   };
   return (
-    <div>
-      <div className="bg-[#242E42]">
+    <div className="">
+      <div className="overflow-y-auto bg-[#242E42]">
         <Navbar />
         <div className="m-5 flex flex-col gap-2">
           <div className="rounded-md bg-white p-4">
@@ -141,7 +142,7 @@ export default function Project() {
           </div>
           {/* Bottom big card */}
           <div className="mb-5 rounded-md bg-white p-5">
-            <div className="flex flex-col gap-5 md:flex-row md:flex-wrap">
+            <div className="flex flex-col gap-5 md:flex-row">
               {/* Left most side */}
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-2">
@@ -163,16 +164,61 @@ export default function Project() {
                   </p>
                 </div>
                 <div className="flex flex-col gap-2">
-                  <p className="text-gray-400">Other submitted documents</p>
+                  <p className="text-gray-400">Figma Link</p>
                   <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
                     https://github.com
                   </p>
                 </div>
+                <div className="flex flex-col gap-2">
+                  <p className="text-gray-400">Other Submitted Documents</p>
+                  <p className="flex w-full flex-row items-center justify-center gap-2 rounded-lg bg-[#EFF1F9] p-3">
+                    <button className="">
+                      <ArrowDownTrayIcon className="h-5 w-5" />
+                    </button>
+                    or Submitted link
+                  </p>
+                </div>
+                <div className="flex flex-col gap-2">
+                  <p className="text-gray-400">
+                    Other Images which are submitted
+                  </p>
+                  <p className="flex w-full flex-row items-center justify-center gap-2 rounded-lg bg-[#EFF1F9] p-3">
+                    <button className="">
+                      <ArrowDownTrayIcon className="h-5 w-5" />
+                    </button>
+                    Download
+                  </p>
+                </div>
               </div>
               {/* Middle description */}
-              <div></div>
+              <div className="flex grow-0 flex-col gap-5 md:w-1/3">
+                <div className="flex flex-col gap-2">
+                  <p className="text-gray-400">Description</p>
+                  <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Et
+                    voluptates quisquam possimus explicabo velit voluptatibus
+                    consectetur sequi, quis modi quo illum libero hic quae
+                    tempore excepturi architecto error quia voluptatem alias
+                    officia quibusdam saepe eaque! Laudantium quaerat delectus,
+                    atque beatae culpa, ex expedita veritatis maiores asperiores
+                    rem eveniet aperiam sint totam aut autem iste molestias.
+                    Quisquam est ipsum recusandae harum, suscipit tempore eius
+                    consectetur assumenda adipisci odit, laborum exercitationem?
+                    Placeat quasi, explicabo quod dolorem laudantium delectus,
+                    praesentium alias ab libero tempora provident, cum odio
+                    voluptatem? Excepturi numquam culpa cupiditate laborum fugit
+                    eos adipisci voluptates, deserunt ea, suscipit quibusdam
+                    quos accusantium.
+                  </p>
+                </div>
+              </div>
               {/* Right comments */}
-              <div></div>
+              <div className="flex flex-col gap-5 overflow-y-auto md:w-1/3">
+                <div className="flex flex-col">
+                  <p className="text-gray-400">Comments</p>
+                  <textarea className="h-full rounded-lg bg-[#EFF1F9] p-3"></textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>
