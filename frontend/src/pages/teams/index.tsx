@@ -1,12 +1,12 @@
 import Head from "next/head";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { useQuery } from "@tanstack/react-query";
+import { useEffect, useRef, useState } from "react";
+// import { useQuery } from "@tanstack/react-query";
 
 import { type Team } from "~/types/common";
 import Navbar from "~/components/Navbar/Navbar";
 import useAuth from "~/hooks/auth";
-import { useRouter } from "next/router";
-import { getTeams } from "~/api/team";
+// import { useRouter } from "next/router";
+// import { getTeams } from "~/api/team";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -160,7 +160,7 @@ export default function Teams() {
                       <tbody className="divide-y divide-gray-200 bg-white">
                         {teams.map((team) => (
                           <tr
-                            key={team.email}
+                            key={team.Id}
                             className={
                               selectedPeople.includes(team)
                                 ? "bg-gray-50"
