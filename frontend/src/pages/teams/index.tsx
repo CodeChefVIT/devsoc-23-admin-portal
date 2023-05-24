@@ -1,11 +1,12 @@
 import Head from "next/head";
-import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 // import { useQuery } from "@tanstack/react-query";
 
 import { type Team } from "~/types/common";
 import Navbar from "~/components/Navbar/Navbar";
 import useAuth from "~/hooks/auth";
-import { useRouter } from "next/router";
+// import { useRouter } from "next/router";
+// import { getTeams } from "~/api/team";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -25,11 +26,42 @@ const teams: Team[] = [
     createdTime: "2023-04-03T13:19:42.288Z",
     updatedTime: "2023-04-03T13:19:42.288Z",
   },
+  {
+    Id: "642ad26ef26f5b1114b109d7",
+    teamName: "test1234",
+    TeamLeaderId: "642ad1fb816231f80bf4c705",
+    teamMembers: ["642ad1fb816231f80bf4c705", "642ad1fb816231f80bf4c706"],
+    teamSize: 1,
+    ProjectId: "642ad29ef26f5b1114b109d9",
+    projectExists: true,
+    round: 3,
+    inviteCode: "THjyWd",
+    createdTime: "2023-04-03T13:19:42.288Z",
+    updatedTime: "2023-04-03T13:19:42.288Z",
+  },
+  {
+    Id: "642ad26ef26f5b1114b109d7",
+    teamName: "test1234",
+    TeamLeaderId: "642ad1fb816231f80bf4c705",
+    teamMembers: ["642ad1fb816231f80bf4c705", "642ad1fb816231f80bf4c706"],
+    teamSize: 1,
+    ProjectId: "642ad29ef26f5b1114b109d9",
+    projectExists: true,
+    round: 3,
+    inviteCode: "THjyWd",
+    createdTime: "2023-04-03T13:19:42.288Z",
+    updatedTime: "2023-04-03T13:19:42.288Z",
+  },
 ];
 
 export default function Teams() {
   const { isAuthenticated } = useAuth();
   // const router = useRouter();
+
+  // const teams = useQuery({
+  //   queryFn: getTeams,
+  // });
+  // console.log(teams);
 
   const checkbox = useRef<HTMLInputElement>(null);
   const [checked, setChecked] = useState(false);
@@ -83,34 +115,52 @@ export default function Teams() {
                           </th>
                           <th
                             scope="col"
-                            className="min-w-[12rem] py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
+                            className="py-3.5 pr-3 text-left text-sm font-semibold text-gray-900"
                           >
-                            Name
+                            Team Name
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Title
+                            Members
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Email
+                            Phone
                           </th>
                           <th
                             scope="col"
                             className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
                           >
-                            Role
+                            Track Enrolled
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Status
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            Modify
+                          </th>
+                          <th
+                            scope="col"
+                            className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+                          >
+                            View Project
                           </th>
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-gray-200 bg-white">
                         {teams.map((team) => (
                           <tr
-                            key={team.email}
+                            key={team.Id}
                             className={
                               selectedPeople.includes(team)
                                 ? "bg-gray-50"
@@ -124,7 +174,7 @@ export default function Teams() {
                               <input
                                 type="checkbox"
                                 className="absolute left-4 top-1/2 -mt-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
-                                value={team.email}
+                                value={team.teamName}
                                 checked={selectedPeople.includes(team)}
                                 onChange={(e) =>
                                   setSelectedPeople(
@@ -143,16 +193,16 @@ export default function Teams() {
                                   : "text-gray-900"
                               )}
                             >
-                              {team.name}
+                              {team.teamName}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {team.title}
+                              {team.teamMembers}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {team.email}
+                              {team.teamSize}
                             </td>
                             <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              {team.role}
+                              {team.updatedTime}
                             </td>
                           </tr>
                         ))}
