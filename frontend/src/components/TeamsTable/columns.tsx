@@ -11,6 +11,7 @@ export type Team = {
 };
 
 import { type ColumnDef } from "@tanstack/react-table";
+import Link from "next/link";
 
 export const columns: ColumnDef<Team>[] = [
   {
@@ -36,5 +37,11 @@ export const columns: ColumnDef<Team>[] = [
   {
     accessorKey: "ProjectId",
     header: "View Project",
+    cell: ({ row }) => (
+      <>
+        <p>{row.original.Id}</p>
+        <Link href={`/teams/${row.original.Id}`}>View Submission</Link>
+      </>
+    ),
   },
 ];

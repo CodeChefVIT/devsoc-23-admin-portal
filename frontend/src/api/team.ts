@@ -37,6 +37,8 @@ export const getTeams = async () => {
       };
     });
 
+    console.log(newTeams);
+
     return newTeams;
   }
 

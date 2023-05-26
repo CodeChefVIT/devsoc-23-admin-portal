@@ -52,6 +52,9 @@ export default function ProjectDetails() {
         }
       );
 
+      console.log(teamDetails.data);
+      console.log(projectDetails.data);
+
       setTeam(teamDetails.data.team);
       setProject(projectDetails.data.project);
     }
