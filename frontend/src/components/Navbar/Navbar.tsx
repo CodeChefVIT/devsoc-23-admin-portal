@@ -2,10 +2,17 @@ import { Disclosure } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
-import useAuth from "~/hooks/auth";
+import { useEffect, useState } from "react";
+// import useAuth from "~/hooks/auth";
 
 export default function Navbar() {
-  const { signOut, isAuthenticated } = useAuth();
+  // const { signOut, isAuthenticated } = useAuth();
+  const [token, setToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("refreshToken");
+    setToken(token);
+  }, []);
 
   return (
     <Disclosure as="nav" className="bg-[#37ABBC] shadow">
@@ -27,10 +34,10 @@ export default function Navbar() {
                   <p className="font-bold text-white">Dashboard</p>
                 </div>
               </div>
-              {isAuthenticated ? (
+              {token ? (
                 <div className="flex items-center justify-center">
                   <ArrowRightOnRectangleIcon
-                    onClick={() => signOut()}
+                    onClick={() => localStorage.removeItem("refreshToken")}
                     className="h-6 w-6 text-white"
                   />
                 </div>
