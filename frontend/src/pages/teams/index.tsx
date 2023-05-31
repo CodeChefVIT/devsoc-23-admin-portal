@@ -11,12 +11,13 @@ export default function Teams() {
   });
   return (
     <>
-      <div className=" hidden h-full flex-1 flex-col space-y-8 px-8 pb-8 md:flex">
+      <div className="flex h-full w-full flex-1 flex-col space-y-8 bg-[#242E42] pb-8">
         <Navbar />
-        <div className="p-5"></div>
-        <div className="mx-auto rounded-md bg-white">
+        <div className="mx-auto h-screen w-full rounded-md bg-[#242E42] px-8">
           {isLoading ? (
-            <div className="p-5">Loading...</div>
+            <div className="rounded-md bg-white p-5 text-center">
+              Loading...
+            </div>
           ) : data === undefined ? (
             <div className="p-5">Something went wrong</div>
           ) : (

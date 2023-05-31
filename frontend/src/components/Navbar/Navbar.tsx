@@ -2,12 +2,14 @@ import { Disclosure } from "@headlessui/react";
 import { ArrowRightOnRectangleIcon } from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 // import useAuth from "~/hooks/auth";
 
 export default function Navbar() {
   // const { signOut, isAuthenticated } = useAuth();
   const [token, setToken] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     const token = localStorage.getItem("refreshToken");
@@ -35,9 +37,12 @@ export default function Navbar() {
                 </div>
               </div>
               {token ? (
-                <div className="flex items-center justify-center">
+                <div className="flex cursor-pointer items-center justify-center">
                   <ArrowRightOnRectangleIcon
-                    onClick={() => localStorage.removeItem("refreshToken")}
+                    onClick={() => {
+                      localStorage.removeItem("refreshToken");
+                      void router.push("/");
+                    }}
                     className="h-6 w-6 text-white"
                   />
                 </div>

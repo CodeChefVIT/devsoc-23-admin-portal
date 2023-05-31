@@ -4,7 +4,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import "react-toastify/dist/ReactToastify.css";
@@ -126,10 +126,12 @@ export default function Index() {
                   {errors.password?.message}
                 </p>
                 <div className="p-3"></div>
-                <input
+                <button
                   type="submit"
                   className="rounded-md border border-[#37ABBC] px-6 py-3 text-white transition ease-in hover:cursor-pointer hover:bg-[#37ABBC]"
-                />
+                >
+                  {mutation.isLoading ? "Signing In...." : "Sign In"}
+                </button>
               </div>
             </form>
           </div>
@@ -143,7 +145,6 @@ export default function Index() {
             height={500}
           />
         </div>
-        <ToastContainer />
       </div>
     </>
   );

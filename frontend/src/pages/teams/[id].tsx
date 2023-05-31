@@ -43,9 +43,11 @@ export default function ProjectDetails() {
         }
       );
 
+      setTeam(teamDetails.data.team);
+
       try {
         const projectDetails = await axios.get<ProjectDetailsResponse>(
-          `/project/get/?teamId=${id}`,
+          `/project/get/${id}`,
           {
             headers: {
               "Content-Type": "application/json",
@@ -53,22 +55,20 @@ export default function ProjectDetails() {
             },
           }
         );
+        console.log(projectDetails.data);
         setProject(projectDetails.data.project);
       } catch (err) {
         if (mainAxios.isAxiosError(err)) {
           console.log(err);
         }
+        setProject(undefined);
       }
-
-      console.log(teamDetails.data);
-
-      setTeam(teamDetails.data.team);
     }
 
     void getTeamDetails();
   }, [router.query.id]);
 
-  if (team && project) {
+  if (team) {
     return (
       <div className="">
         <div className="overflow-y-auto bg-[#242E42]">
@@ -162,7 +162,7 @@ export default function ProjectDetails() {
                   <div className="flex flex-col gap-10">
                     <div>
                       <p className="text-gray-400">Track Name</p>
-                      <p>{project.projectTrack}</p>
+                      <p>{project ? project.projectTrack : "NA"}</p>
                     </div>
                     <div>
                       <p className="text-gray-400">Time of Submission</p>
@@ -184,7 +184,7 @@ export default function ProjectDetails() {
                   </div>
                   <div>
                     <p className="text-gray-400">Tag Line of Project</p>
-                    <p>{project.projectTagLine}</p>
+                    <p>{project ? project.projectTagLine : "NA"}</p>
                   </div>
                 </div>
               </div>
@@ -193,29 +193,29 @@ export default function ProjectDetails() {
             <div className="mb-5 rounded-md bg-white p-5">
               <div className="flex flex-col gap-5 md:flex-row">
                 {/* Left most side */}
-                <div className="flex flex-col gap-5">
+                <div className="flex w-1/3 flex-col gap-5">
                   <div className="flex flex-col gap-2">
                     <p className="text-gray-400">GitHub Repo Link</p>
                     <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
-                      {project.projectGithubLink}
+                      {project ? project.projectGithubLink : "NA"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-gray-400">Drive Link</p>
                     <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
-                      {project.projectDriveLink}
+                      {project ? project.projectDriveLink : "NA"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-gray-400">Built With</p>
                     <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
-                      {project.projectStack}
+                      {project ? project.projectStack : "NA"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-2">
                     <p className="text-gray-400">Figma Link</p>
                     <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
-                      {project.projectFigmaLink}
+                      {project ? project.projectFigmaLink : "NA"}
                     </p>
                   </div>
                   <div className="flex flex-col gap-2">
@@ -244,7 +244,7 @@ export default function ProjectDetails() {
                   <div className="flex flex-col gap-2">
                     <p className="text-gray-400">Description</p>
                     <p className="w-full rounded-lg bg-[#EFF1F9] p-3">
-                      {project.projectDescription}
+                      {project ? project.projectDescription : "NA"}
                     </p>
                   </div>
                 </div>
