@@ -5,6 +5,8 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { ToastContainer, toast } from "react-toastify";
+import { Input } from "~/components/ui/input";
+import { Label } from "~/components/ui/label";
 import "react-toastify/dist/ReactToastify.css";
 
 import { login } from "~/api/user";
@@ -58,7 +60,7 @@ export default function Index() {
       <Head>
         <title>Sign In</title>
       </Head>
-      <div className="flex h-screen flex-row justify-end overflow-y-hidden bg-[#242E42]">
+      <div className="flex h-screen flex-row justify-end overflow-y-hidden bg-[#242E42] font-serif">
         <div className="m-5 w-full lg:w-2/3">
           {/* Header */}
           <div>
@@ -82,14 +84,14 @@ export default function Index() {
               onSubmit={(event) => void handleSubmit(onSubmit)(event)}
             >
               <div>
-                <label
+                <Label
                   htmlFor="email"
                   className="block text-xl font-medium leading-6 text-white"
                 >
                   Email
-                </label>
+                </Label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     type="email"
                     autoComplete="email"
                     id="email"
@@ -104,14 +106,14 @@ export default function Index() {
               </div>
               <div className="p-3"></div>
               <div>
-                <label
+                <Label
                   htmlFor="password"
                   className="block text-xl font-medium leading-6 text-white"
                 >
                   Password
-                </label>
+                </Label>
                 <div className="mt-2">
-                  <input
+                  <Input
                     type="password"
                     id="password"
                     autoComplete="current-password"

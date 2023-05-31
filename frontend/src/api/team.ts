@@ -12,7 +12,7 @@ export const getTeams = async () => {
 
   if (!accessToken) return;
 
-  const response = await axios.get<TeamResponse>("/team/all", {
+  const response = await axios.get<TeamResponse>("/admin/team", {
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${accessToken}`,

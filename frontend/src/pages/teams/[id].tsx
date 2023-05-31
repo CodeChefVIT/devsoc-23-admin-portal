@@ -8,6 +8,7 @@ import Breadcrumbs from "~/components/Breadcrumbs/Breadcrumbs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "~/api";
+import mainAxios from "axios";
 import getToken from "~/utils/getAccessToken";
 interface TeamDetailsResponse {
   team: Team;
@@ -42,21 +43,26 @@ export default function ProjectDetails() {
         }
       );
 
-      const projectDetails = await axios.get<ProjectDetailsResponse>(
-        `/project/get/?teamId=${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
+      try {
+        const projectDetails = await axios.get<ProjectDetailsResponse>(
+          `/project/get/?teamId=${id}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          }
+        );
+        setProject(projectDetails.data.project);
+      } catch (err) {
+        if (mainAxios.isAxiosError(err)) {
+          console.log(err);
         }
-      );
+      }
 
       console.log(teamDetails.data);
-      console.log(projectDetails.data);
 
       setTeam(teamDetails.data.team);
-      setProject(projectDetails.data.project);
     }
 
     void getTeamDetails();

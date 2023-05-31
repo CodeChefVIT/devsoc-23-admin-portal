@@ -11,14 +11,14 @@ export default function Teams() {
   });
   return (
     <>
-      <div className="bg-[#242E42]">
+      <div className=" hidden h-full flex-1 flex-col space-y-8 px-8 pb-8 md:flex">
         <Navbar />
         <div className="p-5"></div>
-        <div className="container mx-auto rounded-md bg-white">
+        <div className="mx-auto rounded-md bg-white">
           {isLoading ? (
-            <div>Loading...</div>
+            <div className="p-5">Loading...</div>
           ) : data === undefined ? (
-            <div>Something went wrong</div>
+            <div className="p-5">Something went wrong</div>
           ) : (
             <DataTable columns={columns} data={data} />
           )}

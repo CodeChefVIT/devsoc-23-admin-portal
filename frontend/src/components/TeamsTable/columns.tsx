@@ -13,26 +13,40 @@ export type Team = {
 import { type ColumnDef } from "@tanstack/react-table";
 import Link from "next/link";
 
+import { DataTableColumnHeader } from "~/components/TeamsTable/data-table-column-header";
+
 export const columns: ColumnDef<Team>[] = [
   {
     accessorKey: "teamName",
-    header: "Team Name",
+    header: ({ column }) => (
+      <DataTableColumnHeader column={column} title="Team Name" />
+    ),
   },
   {
     accessorKey: "teamMembers",
     header: "Members",
+    cell: ({ row }) => (
+      <>
+        {row.original.teamMembers.map((member) => (
+          <p key={member}>{member}</p>
+        ))}
+      </>
+    ),
   },
   {
     accessorKey: "teamPhone",
     header: "Phone",
+    cell: ({ row }) => (
+      <>
+        {row.original.teamPhone.map((phone) => (
+          <p key={phone}>{phone}</p>
+        ))}
+      </>
+    ),
   },
   {
     accessorKey: "round",
     header: "Status",
-  },
-  {
-    accessorKey: "round",
-    header: "Modify",
   },
   {
     accessorKey: "ProjectId",
