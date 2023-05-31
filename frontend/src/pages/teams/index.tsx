@@ -19,7 +19,9 @@ export default function Teams() {
               Loading...
             </div>
           ) : data === undefined ? (
-            <div className="p-5">Something went wrong</div>
+            <div className="rounded-md bg-white p-5 text-center">
+              Something went wrong..
+            </div>
           ) : (
             <DataTable columns={columns} data={data} />
           )}

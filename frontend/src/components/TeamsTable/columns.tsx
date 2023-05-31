@@ -104,6 +104,7 @@ export const columns: ColumnDef<Team>[] = [
         </Select>
       </>
     ),
+    filterFn: "equals",
   },
   {
     accessorKey: "ProjectId",

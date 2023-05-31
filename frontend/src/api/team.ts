@@ -31,7 +31,7 @@ export const getTeams = async () => {
         teamMembers: team.teamMembers,
         // TODO: Change this to actual phone numbers once data is there
         teamPhone: team.teamMembers.map(() => "9988895840"),
-        round: team.round,
+        round: team.round ? team.round : 0,
         modify: team.round,
         ProjectId: team.ProjectId,
       };

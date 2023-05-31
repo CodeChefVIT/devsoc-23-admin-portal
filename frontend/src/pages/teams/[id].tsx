@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "~/api";
 import mainAxios from "axios";
 import getToken from "~/utils/getAccessToken";
+import { toast } from "react-toastify";
 interface TeamDetailsResponse {
   team: Team;
   status: string;
@@ -23,7 +24,33 @@ interface ProjectDetailsResponse {
 export default function ProjectDetails() {
   const [team, setTeam] = useState<Team>();
   const [project, setProject] = useState<Project>();
+  const [comment, setComment] = useState<string | undefined>("");
   const router = useRouter();
+
+  const updateComment = async () => {
+    toast("Updating comment...", { delay: 100 });
+    const refreshToken = localStorage.getItem("refreshToken");
+    const accessToken = await getToken();
+
+    if (!refreshToken || !accessToken) return;
+
+    const payload = {
+      comment,
+    };
+
+    if (!project?.Id) return;
+
+    try {
+      await axios.post(`/project/comment/${project?.Id}`, payload, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
+      toast.success("Comment updated!", { delay: 100 });
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   useEffect(() => {
     async function getTeamDetails() {
@@ -78,7 +105,7 @@ export default function ProjectDetails() {
               <div className="flex flex-row items-center justify-between">
                 <p>{team.teamName}</p>
                 <div className="flex items-center justify-center gap-x-2">
-                  <Dropdown />
+                  <Dropdown teamId={router.query.id} />
                   <BellIcon className="h-5 w-5" />
                 </div>
               </div>
@@ -252,8 +279,17 @@ export default function ProjectDetails() {
                 <div className="flex flex-col gap-5 overflow-y-auto md:w-1/3">
                   <div className="flex flex-col">
                     <p className="text-gray-400">Comments</p>
-                    <textarea className="h-full rounded-lg bg-[#EFF1F9] p-3"></textarea>
+                    <textarea
+                      className="h-full rounded-lg bg-[#EFF1F9] p-3"
+                      onChange={(e) => setComment(e.target.value)}
+                    ></textarea>
                   </div>
+                  <button
+                    className="rounded-md bg-[#37ABBC] p-3 text-white"
+                    onClick={() => void updateComment()}
+                  >
+                    Update Comment
+                  </button>
                 </div>
               </div>
             </div>

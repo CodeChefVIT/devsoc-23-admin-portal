@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Head from "next/head";
+import { Inter } from "next/font/google";
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -13,6 +14,8 @@ import { login } from "~/api/user";
 import { type AxiosError } from "axios";
 import { type Error, type User } from "~/types/common";
 import { useRouter } from "next/router";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 const LoginSchema = z.object({
   email: z.string().email("Enter a real email please."),
@@ -60,7 +63,9 @@ export default function Index() {
       <Head>
         <title>Sign In</title>
       </Head>
-      <div className="flex h-screen flex-row justify-end overflow-y-hidden bg-[#242E42] font-serif">
+      <div
+        className={`flex h-screen flex-row justify-end overflow-y-hidden bg-[#242E42] ${inter.variable} font-sans`}
+      >
         <div className="m-5 w-full lg:w-2/3">
           {/* Header */}
           <div>
@@ -75,7 +80,7 @@ export default function Index() {
           <div className="p-2"></div>
           {/* Form */}
           <div className="m-12 flex flex-col justify-center">
-            <h1 className="text-5xl font-bold text-white">
+            <h1 className={`font-sans text-5xl font-bold text-white`}>
               Judge the People {"<"}3
             </h1>
             <div className="p-3"></div>
@@ -95,7 +100,6 @@ export default function Index() {
                     type="email"
                     autoComplete="email"
                     id="email"
-                    className="block w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="you@example.com"
                     {...register("email", { required: true })}
                   />
@@ -117,7 +121,6 @@ export default function Index() {
                     type="password"
                     id="password"
                     autoComplete="current-password"
-                    className="block w-full rounded-md border-0 py-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="*********"
                     {...register("password", { required: true })}
                   />
