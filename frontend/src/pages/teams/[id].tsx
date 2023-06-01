@@ -195,16 +195,18 @@ export default function ProjectDetails() {
                               </tr>
                             </thead>
                             <tbody className="divide-y divide-gray-200">
-                              {team.teamMembers.map((team) => (
-                                <tr key={team}>
+                              {team.teamMemberDetails.map((teamMember) => (
+                                <tr key={teamMember.Id}>
                                   <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
-                                    {team}
+                                    {teamMember.firstName +
+                                      " " +
+                                      teamMember.lastName}
                                   </td>
                                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {team}
+                                    {teamMember.email}
                                   </td>
                                   <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                                    {team}
+                                    {teamMember.phoneNumber}
                                   </td>
                                 </tr>
                               ))}
@@ -314,14 +316,16 @@ export default function ProjectDetails() {
                     <div className="flex flex-col">
                       <p className="text-gray-400">Comments</p>
                       <textarea
-                        className="h-full rounded-lg bg-[#EFF1F9] p-3"
+                        className="h-full rounded-lg bg-[#EFF1F9] p-3 disabled:cursor-not-allowed disabled:opacity-50"
                         onChange={(e) => setComment(e.target.value)}
                         value={comment}
+                        disabled={project ? false : true}
                       ></textarea>
                     </div>
                     <button
-                      className="rounded-md bg-[#37ABBC] p-3 text-white"
+                      className="rounded-md bg-[#37ABBC] p-3 text-white disabled:cursor-not-allowed disabled:opacity-50"
                       onClick={() => void updateComment()}
+                      disabled={project ? false : true}
                     >
                       Update Comment
                     </button>

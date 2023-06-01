@@ -28,7 +28,7 @@ interface DataTableFacetedFilter<TData, TValue> {
   title?: string;
   options: {
     label: string;
-    value: number;
+    value: string;
     icon?: LucideIcon;
   }[];
 }
@@ -38,7 +38,7 @@ export function DataTableFacetedFilter<TData, TValue>({
   options,
 }: DataTableFacetedFilter<TData, TValue>) {
   const facets = column?.getFacetedUniqueValues();
-  const selectedValues = new Set(column?.getFilterValue() as number[]);
+  const selectedValues = new Set(column?.getFilterValue() as string[]);
 
   return (
     <Popover>

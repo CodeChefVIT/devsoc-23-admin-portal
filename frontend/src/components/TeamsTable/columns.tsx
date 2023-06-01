@@ -5,7 +5,7 @@ export type Team = {
   teamName: string;
   teamMembers: string[];
   teamPhone: string[];
-  round: number;
+  round: string;
   modify: number;
   ProjectId: string;
 };
@@ -82,17 +82,14 @@ export const columns: ColumnDef<Team>[] = [
   {
     accessorKey: "round",
     header: "Status",
+    filterFn: "equalsString",
     cell: ({ row }) => (
       <>
         <Select
           onValueChange={(round) => void updateRound(round, row.original.Id)}
         >
           <SelectTrigger className="h-8 w-[100px]">
-            <SelectValue
-              placeholder={`Round ${
-                row.original.round ? row.original.round : 0
-              }`}
-            />
+            <SelectValue placeholder={`${row.original.round}`} />
           </SelectTrigger>
           <SelectContent>
             {[0, 1, 2, 3].map((round) => (
@@ -104,7 +101,6 @@ export const columns: ColumnDef<Team>[] = [
         </Select>
       </>
     ),
-    filterFn: "equals",
   },
   {
     accessorKey: "ProjectId",

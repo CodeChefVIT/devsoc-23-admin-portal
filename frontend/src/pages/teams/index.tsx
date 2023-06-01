@@ -15,12 +15,14 @@ export default function Teams() {
       <Head>
         <title>Teams</title>
       </Head>
-      <div className="flex h-full w-full flex-1 flex-col space-y-8 bg-[#242E42] pb-8">
+      <div className="flex w-full flex-1 flex-col space-y-8 bg-[#242E42] pb-8">
         <Navbar />
-        <div className="mx-auto h-screen w-full rounded-md bg-[#242E42] px-8">
+        <div className="mx-auto w-full rounded-md bg-[#242E42] px-8">
           {isLoading ? (
-            <div className="rounded-md bg-white p-5 text-center">
-              Loading...
+            <div className="h-screen">
+              <div className="rounded-md bg-white p-5 text-center">
+                Loading...
+              </div>
             </div>
           ) : data === undefined ? (
             <div className="rounded-md bg-white p-5 text-center">

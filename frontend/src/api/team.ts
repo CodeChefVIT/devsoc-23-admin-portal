@@ -27,15 +27,13 @@ export const getTeams = async () => {
       return {
         Id: team.Id,
         teamName: team.teamName,
-        // TODO: Change this actual team member names once backend is updated
         teamMembers: team.teamMemberDetails.map(
           (teamMember) => teamMember.firstName + " " + teamMember.lastName
         ),
-        // TODO: Change this to actual phone numbers once data is there
         teamPhone: team.teamMemberDetails.map(
           (teamMember) => teamMember.phoneNumber
         ),
-        round: team.round ? team.round : 0,
+        round: `Round ${team.round ? team.round : 0}`,
         modify: team.round,
         ProjectId: team.ProjectId,
       };
