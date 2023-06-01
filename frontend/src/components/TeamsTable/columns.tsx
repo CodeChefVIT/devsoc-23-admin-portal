@@ -111,8 +111,12 @@ export const columns: ColumnDef<Team>[] = [
     header: "View Project",
     cell: ({ row }) => (
       <>
-        <p>{row.original.Id}</p>
-        <Link href={`/teams/${row.original.Id}`}>View Submission</Link>
+        <Link
+          href={`/teams/${row.original.Id}`}
+          className="text-blue-500 underline"
+        >
+          View Submission
+        </Link>
       </>
     ),
   },

@@ -33,6 +33,7 @@ export interface Team {
   teamName: string;
   TeamLeaderId: string;
   teamMembers: string[];
+  teamMemberDetails: UserObject[];
   teamSize: number;
   ProjectId: string;
   projectExists: boolean;
