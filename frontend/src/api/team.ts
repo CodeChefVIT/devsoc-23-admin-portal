@@ -33,6 +33,7 @@ export const getTeams = async () => {
         teamPhone: team.teamMemberDetails.map(
           (teamMember) => teamMember.phoneNumber
         ),
+        teamSize: team.teamMemberDetails.length.toString(),
         round: `Round ${team.round ? team.round : 0}`,
         modify: team.round,
         ProjectId: team.ProjectId,

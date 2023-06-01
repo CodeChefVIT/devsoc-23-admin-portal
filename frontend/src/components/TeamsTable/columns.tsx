@@ -6,6 +6,7 @@ export type Team = {
   teamMembers: string[];
   teamPhone: string[];
   round: string;
+  teamSize: string;
   modify: number;
   ProjectId: string;
 };
@@ -80,9 +81,23 @@ export const columns: ColumnDef<Team>[] = [
     ),
   },
   {
+    accessorKey: "teamSize",
+    header: "Team Size",
+    cell: ({ row }) => (
+      <>
+        <p>{row.original.teamSize}</p>
+      </>
+    ),
+    filterFn: (row, id, value: string) => {
+      return value.includes(row.getValue(id));
+    },
+  },
+  {
     accessorKey: "round",
     header: "Status",
-    filterFn: "equalsString",
+    filterFn: (row, id, value: string) => {
+      return value.includes(row.getValue(id));
+    },
     cell: ({ row }) => (
       <>
         <Select

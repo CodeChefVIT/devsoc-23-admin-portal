@@ -25,11 +25,15 @@ export default function Teams() {
               </div>
             </div>
           ) : data === undefined ? (
-            <div className="rounded-md bg-white p-5 text-center">
-              Something went wrong..
+            <div className="h-screen">
+              <div className="rounded-md bg-white p-5 text-center">
+                Something went wrong..
+              </div>
             </div>
           ) : (
-            <DataTable columns={columns} data={data} />
+            <div className="h-full min-h-screen">
+              <DataTable columns={columns} data={data} />
+            </div>
           )}
         </div>
       </div>
