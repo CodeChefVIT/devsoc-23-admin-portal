@@ -9,6 +9,7 @@ export type Team = {
   teamSize: string;
   modify: number;
   ProjectId: string;
+  projectExists: string;
 };
 
 import {
@@ -130,5 +131,17 @@ export const columns: ColumnDef<Team>[] = [
         </Link>
       </>
     ),
+  },
+  {
+    accessorKey: "projectExists",
+    header: "Project Exists",
+    cell: ({ row }) => (
+      <>
+        <p>{row.original.projectExists}</p>
+      </>
+    ),
+    filterFn: (row, id, value: string) => {
+      return value.includes(row.getValue(id));
+    },
   },
 ];

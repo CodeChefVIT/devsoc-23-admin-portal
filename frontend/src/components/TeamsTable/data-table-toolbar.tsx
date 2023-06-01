@@ -8,7 +8,7 @@ import { Input } from "~/components/ui/input";
 import { DataTableViewOptions } from "~/components/TeamsTable/data-table-view-options";
 
 import { DataTableFacetedFilter } from "~/components/TeamsTable/data-table-faceted-filter";
-import { rounds, teamSizes } from "./data";
+import { rounds, submitted, teamSizes } from "./data";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;
@@ -46,6 +46,13 @@ export function DataTableToolbar<TData>({
             column={table.getColumn("teamSize")}
             title="Size"
             options={teamSizes}
+          />
+        )}
+        {table.getColumn("projectExists") && (
+          <DataTableFacetedFilter
+            column={table.getColumn("projectExists")}
+            title="Project Exists?"
+            options={submitted}
           />
         )}
         {isFiltered && (
