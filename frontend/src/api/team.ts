@@ -37,6 +37,7 @@ export const getTeams = async () => {
         round: `Round ${team.round ? team.round : 0}`,
         modify: team.round,
         ProjectId: team.ProjectId,
+        projectExists: team.projectExists ? "Yes" : "No",
       };
     });
 

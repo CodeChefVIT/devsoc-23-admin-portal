@@ -39,3 +39,14 @@ export const teamSizes = [
     label: "5",
   },
 ];
+
+export const submitted = [
+  {
+    value: "Yes",
+    label: "Yes",
+  },
+  {
+    value: "No",
+    label: "No",
+  },
+];
