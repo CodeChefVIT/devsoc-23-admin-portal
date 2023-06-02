@@ -7,6 +7,11 @@ interface TeamResponse {
   teams: Team[];
 }
 
+interface TeamDetailsResponse {
+  status: string;
+  team: Team;
+}
+
 export const getTeams = async () => {
   const accessToken = await getToken();
 
@@ -48,4 +53,28 @@ export const getTeams = async () => {
   }
 
   return;
+};
+
+export const getTeamDetails = async (teamId: string | string[] | undefined) => {
+  const accessToken = await getToken();
+
+  if (!accessToken || !teamId) return;
+
+  if (!teamId || Array.isArray(teamId)) return;
+
+  const teamDetails = await axios.get<TeamDetailsResponse>(
+    `/team/get/${teamId}`,
+    {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${accessToken}`,
+      },
+    }
+  );
+
+  if (teamDetails.data.status === "true") {
+    const team = teamDetails.data.team;
+
+    return team;
+  }
 };
