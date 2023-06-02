@@ -4,6 +4,7 @@ export interface UserObject {
   lastName: string;
   email: string;
   password: string;
+  mode: string;
   phoneNumber: string;
   token: string;
   userRole: string;
