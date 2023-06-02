@@ -5,6 +5,7 @@ export type Team = {
   teamName: string;
   teamMembers: string[];
   teamPhone: string[];
+  teamMode: string[];
   round: string;
   teamSize: string;
   modify: number;
@@ -76,6 +77,17 @@ export const columns: ColumnDef<Team>[] = [
     cell: ({ row }) => (
       <>
         {row.original.teamPhone.map((phone) => (
+          <p key={phone}>{phone}</p>
+        ))}
+      </>
+    ),
+  },
+  {
+    accessorKey: "teamMode",
+    header: "Team Mode",
+    cell: ({ row }) => (
+      <>
+        {row.original.teamMode.map((phone) => (
           <p key={phone}>{phone}</p>
         ))}
       </>
