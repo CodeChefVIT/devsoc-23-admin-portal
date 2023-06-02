@@ -64,7 +64,7 @@ export default function ProjectDetails() {
   };
 
   useEffect(() => {
-    async function getTeamDetails() {
+    async function getDetails() {
       const id = router.query.id;
       const accessToken = await getToken();
 
@@ -122,7 +122,7 @@ export default function ProjectDetails() {
       }
     }
 
-    void getTeamDetails();
+    void getDetails();
   }, [router.query.id]);
 
   if (team) {
