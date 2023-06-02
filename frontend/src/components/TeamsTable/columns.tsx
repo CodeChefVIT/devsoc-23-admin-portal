@@ -138,6 +138,8 @@ export const columns: ColumnDef<Team>[] = [
         <Link
           href={`/teams/${row.original.Id}`}
           className="text-blue-500 underline"
+          rel="noopener noreferrer"
+          target="_blank"
         >
           View Submission
         </Link>
