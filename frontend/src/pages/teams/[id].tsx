@@ -1,129 +1,57 @@
 /* eslint-disable @next/next/no-img-element */
 import Navbar from "~/components/Navbar/Navbar";
-import { type Project, type Team } from "~/types/common";
 import { BellIcon } from "@heroicons/react/24/solid";
 import { ArrowDownTrayIcon } from "@heroicons/react/24/outline";
 import Dropdown from "~/components/Dropdown/Dropdown";
 import Breadcrumbs from "~/components/Breadcrumbs/Breadcrumbs";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import axios from "~/api";
-import mainAxios from "axios";
-import getToken from "~/utils/getAccessToken";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import Head from "next/head";
-interface TeamDetailsResponse {
-  team: Team;
-  status: string;
-}
-
-interface ProjectDetailsResponse {
-  project: Project;
-  status: string;
-}
-
-interface ProjectCommentResponse {
-  comment: {
-    Id: string;
-    projectId: string;
-    Comment: string;
-  };
-  status: string;
-}
+import { useMutation, useQuery } from "@tanstack/react-query";
+import { getTeamDetails } from "~/api/team";
+import { getProjectDetails } from "~/api/project";
+import { getComment, postComment } from "~/api/comment";
 
 export default function ProjectDetails() {
-  const [team, setTeam] = useState<Team>();
-  const [project, setProject] = useState<Project>();
-  const [comment, setComment] = useState<string | undefined>("");
   const router = useRouter();
 
-  const updateComment = async () => {
-    toast("Updating comment...", { delay: 100 });
-    const refreshToken = localStorage.getItem("refreshToken");
-    const accessToken = await getToken();
+  const { data: team } = useQuery({
+    queryKey: ["getTeamDetails", router.query.id],
+    queryFn: () => getTeamDetails(router.query.id),
+    enabled: router.query.id !== undefined,
+  });
 
-    if (!refreshToken || !accessToken) return;
+  const { data: project } = useQuery({
+    queryKey: ["getProjectDetails", router.query.id],
+    queryFn: () => getProjectDetails(router.query.id),
+    enabled: router.query.id !== undefined,
+  });
 
-    const payload = {
-      projectId: project?.Id,
-      comment,
-    };
+  const projectId = project?.Id;
 
-    if (!project?.Id) return;
+  const [commentText, setCommentText] = useState<string>();
 
-    try {
-      await axios.post(`/admin/comment/`, payload, {
-        headers: {
-          Authorization: `Bearer ${accessToken}`,
-        },
-      });
+  const {} = useQuery({
+    queryKey: ["getProjectComment", projectId],
+    queryFn: () => getComment(projectId),
+    onSuccess: (data) => {
+      setCommentText(data?.Comment);
+    },
+    enabled: !!projectId,
+  });
+
+  const mutation = useMutation({
+    mutationFn: postComment,
+    onSuccess: (data) => {
       toast.success("Comment updated!", { delay: 100 });
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    async function getDetails() {
-      const id = router.query.id;
-      const accessToken = await getToken();
-
-      if (!id || id instanceof Array) return;
-      if (!accessToken) return;
-
-      const teamDetails = await axios.get<TeamDetailsResponse>(
-        `/team/get/${id}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-        }
-      );
-
-      setTeam(teamDetails.data.team);
-
-      try {
-        const projectDetails = await axios.get<ProjectDetailsResponse>(
-          `/project/get/${id}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${accessToken}`,
-            },
-          }
-        );
-        console.log(projectDetails.data);
-        setProject(projectDetails.data.project);
-
-        try {
-          const projectComment = await axios.get<ProjectCommentResponse>(
-            `/admin/comment/${projectDetails.data.project.Id}`,
-            {
-              headers: {
-                Authorization: `Bearer ${accessToken}`,
-              },
-            }
-          );
-
-          console.log(projectComment.data);
-
-          setComment(projectComment.data.comment.Comment);
-        } catch (err) {
-          if (mainAxios.isAxiosError(err)) {
-            console.log(err);
-          }
-        }
-      } catch (err) {
-        if (mainAxios.isAxiosError(err)) {
-          console.log(err);
-        }
-        setProject(undefined);
-      }
-    }
-
-    void getDetails();
-  }, [router.query.id]);
+      console.log(data);
+    },
+    onError: (error) => {
+      toast.error("Error updating comment!", { delay: 100 });
+      console.log(error);
+    },
+  });
 
   if (team) {
     return (
@@ -317,14 +245,16 @@ export default function ProjectDetails() {
                       <p className="text-gray-400">Comments</p>
                       <textarea
                         className="h-full rounded-lg bg-[#EFF1F9] p-3 disabled:cursor-not-allowed disabled:opacity-50"
-                        onChange={(e) => setComment(e.target.value)}
-                        value={comment}
+                        onChange={(e) => setCommentText(e.target.value)}
+                        value={commentText}
                         disabled={project ? false : true}
                       ></textarea>
                     </div>
                     <button
                       className="rounded-md bg-[#37ABBC] p-3 text-white disabled:cursor-not-allowed disabled:opacity-50"
-                      onClick={() => void updateComment()}
+                      onClick={() =>
+                        mutation.mutate({ comment: commentText, projectId })
+                      }
                       disabled={project ? false : true}
                     >
                       Update Comment

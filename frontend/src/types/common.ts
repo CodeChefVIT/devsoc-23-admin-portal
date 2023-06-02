@@ -68,3 +68,9 @@ export interface Error {
   err: string;
   status: boolean;
 }
+
+export interface Comment {
+  Id: string;
+  projectId: string;
+  Comment: string;
+}
