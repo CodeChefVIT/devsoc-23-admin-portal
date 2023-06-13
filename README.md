@@ -1,61 +1,65 @@
-<p align="center"><a href="https://www.codechefvit.com" target="_blank"><img src="https://i.ibb.co/4J9LXxS/cclogo.png" width=160 title="CodeChef-VIT" alt="Codechef-VIT"></a>
+<p align="center"><a href="https://www.codechefvit.com" target="_blank"><img src="https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/logo-3.png" title="CodeChef-VIT" alt="Codechef-VIT"></a>
 </p>
 
-<h2 align="center"> Project Title </h2>
-<br/>
+# DEVSOC'23 Portal
 
-> Include project description here.
-
+> <Subtitle>
+> The offical admin portal for DEVSOC'23
+<!-- 
 ---
-
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
-  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE)
-[![GitHub Super-Linter](https://github.com/<OWNER>/<REPOSITORY>/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/marketplace/actions/super-linter)
+  [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE) -->
 
 ## Features
-- Insert list of features here
+- Reduce redundancy.
+- Well updated and informative.
+- Easy to use.
+	
+## Important Links
+- [DEVSOC Landing Page](https://hackwith.codechefvit.com)
+- [DEVSOC Backend Repo](https://github.com/CodeChefVIT/devsoc23-backend)
+- [DEVSOC Landing Page Repo](https://github.com/CodeChefVIT/DEVSOC-23-Landing)
 
-## Screenshots
-<p align="center">
-<img src="https://i.ibb.co/VppxmWZ/cet.png" alt="Common-Entry-Test" width="400px"/>
-</p>
-
-
-## Dependencies
- - < dependency >
- - < dependency >
-## Instructions
-
-#### Directions to Install
-```sh
-$ git clone https://github.com/CodeChefVIT/<Project>
-$ cd <Project>
-$ yarn install
+## Instructions to run
 ```
-#### Directions to Run
-```bash
-$ yarn serve
+$ git clone https://github.com/CodeChefVIT/devsoc-23-admin-portal.git
+$ cd devsoc-23-admin-portal
+$ pnpm i
+$ pnpm dev
+>> Refer .env.example for environment variables
 ```
+
 ## Contributors
 <table>
-	<tr align="center" style="font-weight:bold">
-		<td>
-		John Doe
-		<p align="center">
-			<img src = "https://i.ibb.co/4J9LXxS/cclogo.png" width="150" height="150" alt="Your Name Here (Insert Your Image Link In Src">
-		</p>
-			<p align="center">
-				<a href = "https://github.com/<GitHub-username>">
-					<img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/>
-				</a>
-			</p>
-		</td>
-	</tr>
+<tr align="center">
+<td> Anand Rajaram
+	<p align="center">
+		<img src = "https://avatars.githubusercontent.com/anandrajaram21" width="150" height="150" alt="Aditansh">
+	</p>
+	<p align="center">
+		<a href = "https://github.com/anandrajaram21"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/></a>
+		<a href = "https://www.linkedin.com/in/anandrajaram21/">
+			<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36" alt="LinkedIn"/>
+		</a>
+	</p>
+</td>
+	<td> Sahas Vivek
+	<p align="center">
+		<img src = "https://avatars.githubusercontent.com/sahas-01" width="150" height="150" alt="Sahas">
+	</p>
+	<p align="center">
+		<a href = "https://github.com/sahas-01"><img src = "http://www.iconninja.com/files/241/825/211/round-collaboration-social-github-code-circle-network-icon.svg" width="36" height = "36" alt="GitHub"/></a>
+		<a href = "https://www.linkedin.com/in/sahas-vivek-9217801a0/">
+			<img src = "http://www.iconninja.com/files/863/607/751/network-linkedin-social-connection-circular-circle-media-icon.svg" width="36" height="36" alt="LinkedIn"/>
+		</a>
+	</p>
+</td>
+</tr>
 </table>
 
 ## License
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
 
 <p align="center">
-	Made with :heart: by <a href="https://www.codechefvit.com" target="_blank">CodeChef-VIT</a>
+	With :heart: by <a href="https://www.codechefvit.com" target="_blank">CodeChef-VIT</a>
 </p>
