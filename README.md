@@ -4,14 +4,17 @@
 # DEVSOC'23 Portal
 
 > <Subtitle>
-> The offical admin portal for DEVSOC'23
+> The official admin portal for DEVSOC'23
 <!-- 
 ---
 [![DOCS](https://img.shields.io/badge/Documentation-see%20docs-green?style=flat-square&logo=appveyor)](INSERT_LINK_FOR_DOCS_HERE) 
   [![UI ](https://img.shields.io/badge/User%20Interface-Link%20to%20UI-orange?style=flat-square&logo=appveyor)](INSERT_UI_LINK_HERE) -->
 
 ## Features
-- Reduce redundancy.
+- View all teams
+- View team submission details
+- Filter by round
+- Shortlist candidates to next round
 - Well updated and informative.
 - Easy to use.
 	
